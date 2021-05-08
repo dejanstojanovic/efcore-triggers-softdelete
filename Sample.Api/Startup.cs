@@ -37,7 +37,10 @@ namespace Sample.Api
 
             services.AddScriptSeeding(Configuration.GetConnectionString(DbContextConfigConstants.DB_CONNECTION_CONFIG_NAME));
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options => 
+                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Sample.Api", Version = "v1" });
