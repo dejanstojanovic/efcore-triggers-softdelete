@@ -1,0 +1,5 @@
+﻿# Add migration
+dotnet ef migrations add Initialize_Database -o Migrations -c StoreDbContext
+
+# Update database
+dotnet ef database update -c StoreDbContext
