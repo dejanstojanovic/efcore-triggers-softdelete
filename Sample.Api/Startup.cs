@@ -1,3 +1,4 @@
+//using EntityFrameworkCore.SqlServer.Seeding.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -34,6 +35,8 @@ namespace Sample.Api
                 );
             });
 
+            //services.AddScriptSeeding(Configuration.GetConnectionString(DbContextConfigConstants.DB_CONNECTION_CONFIG_NAME));
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -50,6 +53,8 @@ namespace Sample.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sample.Api v1"));
             }
+
+            //app.SeedFromScripts(this.GetType().Assembly, "Seedings");
 
             app.UseHttpsRedirection();
 
