@@ -7,6 +7,6 @@ namespace Sample.Api.Data.Interfaces
 {
     public interface ISoftDelete
     {
-        public DateTime DeletedOn { get; set; }
+        public DateTime? DeletedOn { get; set; }
     }
 }

@@ -33,6 +33,9 @@ namespace Sample.Api
                         x.MigrationsAssembly(this.GetType().Assembly.GetName().Name);
                     }
                 );
+                options.UseTriggers(triggerOptions => {
+                    triggerOptions.AddAssemblyTriggers();
+                });
             });
 
             services.AddScriptSeeding(Configuration.GetConnectionString(DbContextConfigConstants.DB_CONNECTION_CONFIG_NAME));
@@ -48,7 +51,7 @@ namespace Sample.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, StoreDbContext dbContext)
         {
             if (env.IsDevelopment())
             {
@@ -56,6 +59,8 @@ namespace Sample.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sample.Api v1"));
             }
+
+            dbContext.Database.Migrate();
 
             app.SeedFromScripts(this.GetType().Assembly, "Seedings");
 
