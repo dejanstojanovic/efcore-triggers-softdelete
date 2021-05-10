@@ -10,6 +10,7 @@ namespace Sample.Api.Domain
         public int Id { get; set; }
         public DateTime CreatedOn { get; set; }
 
+        public virtual ICollection<Item> Items { get; set; }
         public ICollection<OrderItem> OrderItems { get; set; }
     }
 }

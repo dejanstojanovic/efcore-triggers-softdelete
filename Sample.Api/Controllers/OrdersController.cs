@@ -22,7 +22,7 @@ namespace Sample.Api.Controllers
         public async Task<IEnumerable<Order>> Get()
         {
             return await _dbContext.Orders
-                .Include(o => o.OrderItems).ThenInclude(oi => oi.Item)
+                .Include(oi => oi.Items)
                 .ToArrayAsync();
         }
     }

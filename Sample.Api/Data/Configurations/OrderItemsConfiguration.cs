@@ -10,7 +10,6 @@ namespace Sample.Api.Data.Configurations
         {
             builder.ToTable("OrderItems");
             builder.HasKey(oi => new { oi.ItemId, oi.OrderId });
-
         }
     }
 }

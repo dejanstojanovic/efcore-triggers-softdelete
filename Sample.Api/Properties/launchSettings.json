@@ -24,7 +24,8 @@
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ConnectionStrings__StoreSampleDatabase": "data source=AELAP083\\SQLEXPRESS;initial catalog=StoreSample;user id=sa;password=Mardocs1;MultipleActiveResultSets=True;"
       }
     }
   }

@@ -14,9 +14,6 @@ namespace Sample.Api.Data.Configurations
                 .ValueGeneratedOnAdd()
                 .UseIdentityColumn(1, 1);
 
-            builder.HasMany(o => o.OrderItems)
-                .WithOne(oi => oi.Item)
-                .HasForeignKey(oi => oi.ItemId);
         }
     }
 }

@@ -19,9 +19,17 @@ namespace Sample.Api.Data.Configurations
                 .IsRequired()
                 .HasDefaultValueSql("GETUTCDATE()");
 
-            builder.HasMany(o => o.OrderItems)
-                .WithOne(oi => oi.Order)
-                .HasForeignKey(oi => oi.OrderId);
+            builder.HasMany(o => o.Items)
+                .WithMany(oi => oi.Orders)
+                .UsingEntity<OrderItem>(
+                    j => j.HasOne(oi => oi.Item).WithMany(oi => oi.OrderItems).HasForeignKey(oi => oi.ItemId),
+                    j => j.HasOne(oi => oi.Order).WithMany(oi => oi.OrderItems).HasForeignKey(oi => oi.OrderId),
+                    j=>
+                    {
+                        j.HasKey(t => new { t.OrderId, t.ItemId });
+                    }
+                );
+                
         }
     }
 }
